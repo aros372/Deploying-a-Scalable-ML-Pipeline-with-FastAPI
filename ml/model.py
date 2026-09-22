@@ -19,7 +19,7 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-    # TODO: implement the function
+    # TO [not] DO: implement the function
     pass
 
 
@@ -59,8 +59,8 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    # TODO: implement the function
-    pass
+    # DONE: implement the function
+    return model.predict(X)
 
 def save_model(model, path):
     """ Serializes model to a file.
@@ -72,21 +72,21 @@ def save_model(model, path):
     path : str
         Path to save pickle file.
     """
-    # TODO: implement the function
-    pass
+    # DONE: implement the function 
+    with open (path, 'w+') as f:    # (CHECK: 'W+' is correct)
+        pickle.dump(model, f)
 
 def load_model(path):
     """ Loads pickle file from `path` and returns it."""
-    # TODO: implement the function
-    pass
-
+    # DONE: implement the function
+    with open (path, 'r+') as f:
+        return = pickle.load(f)     # CHECK: return can be done here (otherwise create 'model' var and return that)
 
 def performance_on_categorical_slice(
     data, column_name, slice_value, categorical_features, label, encoder, lb, model
 ):
     """ Computes the model metrics on a slice of the data specified by a column name and
-
-    Processes the data using one hot encoding for the categorical features and a
+    processes the data using one hot encoding for the categorical features and a
     label binarizer for the labels. This can be used in either training or
     inference/validation.
 
@@ -116,13 +116,20 @@ def performance_on_categorical_slice(
     recall : float
     fbeta : float
 
+    Hint: performance_on_categorical_slice is a function that computes the performance metrics when the value of a given feature is held fixed. E.g., for education, it would print out the model metrics for data with a particular value for education.
+    Don't forget to add the necessary imports.
     """
-    # TODO: implement the function
-    X_slice, y_slice, _, _ = process_data(
-        # your code here
-        # for input data, use data in column given as "column_name", with the slice_value 
-        # use training = False
-    )
-    preds = None # your code here to get prediction on X_slice using the inference function
+    # DONE: implement the function
+    # for input data, use data in column given as "column_name", with the slice_value; use training = False
+    """
+    # ml/data.py
+    def process_data(X, categorical_features=[], label=None, training=True, encoder=None, lb=None):
+        return X, y, encoder, lb
+    """
+    X_slice, y_slice, _, _ = process_data(X_slice, categorical_features, label, False, encoder, lb)
+    
+    # DONE: get prediction on X_slice using the inference function
+    preds = inference(model, X_slice)
+    
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
