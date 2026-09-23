@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from ml.data import process_data
-from train_model import train_test_split, train_model, inference,compute_model_metrics
+from ml.model import train_test_split, train_model, inference, compute_model_metrics
 
 def test_binary_encoding():
     # check the process_data function is binary encoding the label properly
@@ -24,4 +24,3 @@ def test_metric_ranges():
     preds = inference(model, X_test)
     p, r, fb = compute_model_metrics(y_test, preds)
     assert all(0<=val<=1 for val in [p, r, fb])
-

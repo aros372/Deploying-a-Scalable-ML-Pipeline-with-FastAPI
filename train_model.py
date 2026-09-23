@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
 from ml.data import process_data
 from ml.model import (
     compute_model_metrics,
@@ -11,6 +10,7 @@ from ml.model import (
     save_model,
     train_model,
 )
+
 # DONE: load the cencus.csv data
 project_path = "/workspace/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
 data_path = os.path.join(project_path, "data", "census.csv")
