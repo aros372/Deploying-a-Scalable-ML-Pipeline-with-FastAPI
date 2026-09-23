@@ -40,7 +40,7 @@ X_train, y_train, encoder, lb = process_data(
     # use the train dataset 
     # use training=True
     # do not need to pass encoder and lb as input
-    train, cat_features, "income", True     # CHECK 'income' vs 'salary' label (see test code below)
+    train, cat_features, "salary", True     # CHECK 'income' vs 'salary' label (see test code below)
     )
 
 X_test, y_test, _, _ = process_data(
@@ -83,7 +83,7 @@ for col in cat_features:
             # your code here
             # use test, col and slicevalue as part of the input
             # inputs: data, column_name, slice_value, cat_features, label, encoder, lb, model
-            test, col, slicevalue, cat_features, 'income', encoder, lb, model
+            test, col, slicevalue, cat_features, 'salary', encoder, lb, model
         )
         with open("slice_output.txt", "a") as f:
             print(f"{col}: {slicevalue}, Count: {count:,}", file=f)
