@@ -1,7 +1,8 @@
 import pytest
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from ml.data import process_data
-from ml.model import train_test_split, train_model, inference, compute_model_metrics
+from ml.model import train_model, inference, compute_model_metrics
 
 def test_binary_encoding():
     # check the process_data function is binary encoding the label properly
