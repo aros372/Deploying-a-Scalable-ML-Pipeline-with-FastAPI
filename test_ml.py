@@ -1,8 +1,8 @@
 import pytest
 import pandas as pd
-from sklearn.model_selection import train_test_split
+import numpy as np
 from ml.data import process_data
-from ml.model import train_model, inference, compute_model_metrics
+from ml.model import compute_model_metrics
 
 def test_binary_encoding():
     # check the process_data function is binary encoding the label properly
@@ -16,12 +16,8 @@ def test_feature_transformation():
     X, y, _, _ =process_data(df, ['feat_1', 'feat_2'], 'label', True)
     assert df.shape[0] == X.shape[0] and df.shape[0] == y.shape[0]
 
-def test_metric_ranges():
-    df = pd.DataFrame({'feat_1':[1,2,3,4,1,2,3,4], 'feat_2':[9,10,11,12,12,11,10,9], 'label':['a','b','a','a','a','b','a','b',]})
-    train, test = train_test_split(df, test_size=0.2, random_state=42)
-    X_train, y_train, encoder, lb = process_data(train, ['feat_1', 'feat_2'], 'label', True)
-    X_test, y_test, _, _ = process_data(test, ['feat_1', 'feat_2'], 'label', False, encoder, lb)
-    model = train_model(X_train, y_train)
-    preds = inference(model, X_test)
+def test_model_metrics():
+    y_test = np.array([0,0,1,1])
+    preds = np.array([0,1,0,1])
     p, r, fb = compute_model_metrics(y_test, preds)
-    assert all(0<=val<=1 for val in [p, r, fb])
+    assert all(val==0.5 for val in [p, r, fb])

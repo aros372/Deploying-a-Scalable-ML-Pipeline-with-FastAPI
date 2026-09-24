@@ -42,3 +42,6 @@ The Start Kit contains all the files and folders you need for the project:
     main.py: contains starter code for creating a RESTful API using FastAPI
     local_api.py: contains starter code that uses the requests module to do one POST on your live API.
     test_ml.py: contains starter code for you to write tests on the data or the model
+
+## Github Repository Link:
+https://github.com/aros372/Deploying-a-Scalable-ML-Pipeline-with-FastAPI.git
